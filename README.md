@@ -258,6 +258,8 @@ const ListPenginapKos = () => {
 ![Update](https://github.com/wiridlangit/pemrograman-integratif/blob/main/img/Screenshot%202023-04-02%20172913.png?raw=true)
 
 6. Type "list" to see all data.
+
+
 ![Output](https://raw.githubusercontent.com/wiridlangit/pemrograman-integratif/main/img/Screenshot%202023-04-02%20160036.png)
 
 
