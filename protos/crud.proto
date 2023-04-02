@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package crud;
+
+service CrudService {
+  rpc Create(CreateRequest) returns (CreateResponse) {}
+  rpc Read(ReadRequest) returns (ReadResponse) {}
+  rpc Update(UpdateRequest) returns (UpdateResponse) {}
+  rpc Remove(RemoveRequest) returns (RemoveResponse) {}
+  rpc ListPenginapKos(ListPenginapKosRequest) returns (ListPenginapKosResponse) {}
+}
+
+message PenginapKos {
+  int32 id = 1;
+  string nama = 2;
+  string no_telepon = 3;
+  int32 nomor_kos = 4;
+  int32 umur = 5;
+  string asal_daerah = 6;
+}
+
+message CreateRequest {
+  string nama = 1;
+  string no_telepon = 2;
+  int32 nomor_kos = 3;
+  int32 umur = 4;
+  string asal_daerah = 5;
+}
+
+message CreateResponse {
+  bool success = 1;
+  int32 id = 2;
+}
+
+message ReadRequest {
+  int32 id = 1;
+}
+
+message ReadResponse {
+  PenginapKos penginap_kos = 1;
+}
+
+message UpdateRequest {
+  int32 id = 1;
+  string nama = 2;
+  string no_telepon = 3;
+  int32 nomor_kos = 4;
+  int32 umur = 5;
+  string asal_daerah = 6;
+}
+
+message UpdateResponse {
+  bool success = 1;
+}
+
+message RemoveRequest {
+  int32 id = 1;
+}
+
+message RemoveResponse {
+  bool success = 1;
+}
+
+message ListPenginapKosRequest {}
+
+message ListPenginapKosResponse {
+  repeated PenginapKos penginap_kos = 1;
+} 
