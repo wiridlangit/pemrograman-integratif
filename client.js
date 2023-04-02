@@ -45,6 +45,7 @@ const read = (id) => {
 };
 
 
+
 const update = () => {
   console.log('Enter the ID of the user you want to update:');
   process.stdin.once('data', (idInput) => {
@@ -151,13 +152,13 @@ process.stdin.on('data', (input) => {
   });
       break;
 
-    case 'read':
+      case 'read':
       console.log('Enter the ID of the user you want to read:');
       process.stdin.once('data', (idInput) => {
         const id = Number(idInput.toString().trim());
         read(id);
       });
-      break;
+      break;   
     case 'update':
       update();
       break;
