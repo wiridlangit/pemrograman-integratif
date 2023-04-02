@@ -33,27 +33,26 @@ db.serialize(function() {
   };
 
   const read = (call, callback) => {
-    const id = call.request.id;
-    const query = `SELECT * FROM penginap_kos WHERE id = ${id}`;
-    db.get(query, function(err, row) {
+    const query = `SELECT * FROM penginap_kos WHERE id=${call.request.id}`;
+    db.get(query, (err, row) => {
       if (err) {
-        console.error(err);
-        callback({ code: grpc.status.INTERNAL, message: err.message });
-        return;
+        callback(err);
+      } else if (!row) {
+        callback({
+          code: grpc.status.NOT_FOUND,
+          message: `Penginap Kos dengan id ${call.request.id} tidak ditemukan`
+        });
+      } else {
+        const penginap_kos = {
+          id: row.id,
+          nama: row.nama,
+          no_telepon: row.no_telepon,
+          nomor_kos: row.nomor_kos,
+          umur: row.umur,
+          asal_daerah: row.asal_daerah
+        };
+        callback(null, { penginap_kos });
       }
-      if (!row) {
-        callback({ code: grpc.status.NOT_FOUND, details: `User with ID ${id} not found` });
-        return;
-      }
-      const user = {
-        id: row.id,
-        nama: row.nama,
-        no_telepon: row.no_telepon,
-        nomor_kos: row.nomor_kos,
-        umur: row.umur,
-        asal_daerah: row.asal_daerah,
-      };
-      callback(null, { user });
     });
   };
 
